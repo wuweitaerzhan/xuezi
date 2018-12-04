@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="ulScores">
+    <li>85</li>
+    <li>76</li>
+    <li>92</li>
+    <li>61</li>
+  </ul>
+  <script>
+    //获得id为ulScores的HTML内容
+    var html=ulScores.innerHTML;
+    console.log(html);
+    //删除开头的空字符和<li>
+    html=html.replace(/^\s*<li>/i,"")
+    console.log(html);
+    //删除结尾的</li>和空字符
+    html=html.replace(/<\/li>\s*$/i,"")
+    console.log(html);
+    //按</li>空格<li>切割
+    var scores=
+      html.split(/<\/li>\s*<li>/i)
+    console.log(scores);
+    //将数组降序排列
+    scores.sort(
+      function(a,b){return b-a});
+    console.log(scores);
+    html="<li>"+
+      scores.join("</li><li>")
+    +"</li>";
+    /*
+    <li>92</li>
+    <li>85</li>
+    <li>76</li>
+    <li>61</li>
+    */
+    ulScores.innerHTML=html;
+  </script>
+</body>
+</html>
